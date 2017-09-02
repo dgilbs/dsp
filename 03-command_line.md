@@ -19,7 +19,19 @@ Here's a list of items with which you should be familiar:
 
 Make a cheat sheet for yourself: a list of at least **ten** commands and what they do.  (Use the 8 items above and add a couple of your own.)  
 
-> > REPLACE THIS TEXT WITH YOUR RESPONSE
+* show current working directory path: pwd
+* creating a directory: mkdir (name)
+* deleting a directory: rmdir (name)
+* creating a file using `touch` command: touch (name)
+* deleting a file: rm (name)
+* renaming a file: mv (filename) (new filename)
+* listing hidden files: ls -a
+* copying a file from one directory to another: cp (filename) (directory)
+* returning to the previous directory: cd ..
+* open a file: open (filename)
+* open a file in Sublime: subl (filename)
+* open a whole folder in Sublime: subl *
+
 
 ---
 
@@ -34,7 +46,13 @@ What do the following commands do:
 `ls -t`  
 `ls -Glp`  
 
-> > REPLACE THIS TEXT WITH YOUR RESPONSE
+* `ls`: lists files and directories
+* `ls-a`: lists all entries including those starting with a period
+* `ls -l`: displays the long format (permissions, links, owner, group, size, time, name)
+* `ls -lh`: lists the long format with unit suffixes
+* `ls -lah`: lists the long format of all files, including hidden ones, with unit suffixes
+* `ls -t`: lists files in the order of time modified, with the most recently modified being listed first
+* `ls -Glp`: lists the long format of files with a slash and a different text color for directories
 
 ---
 
@@ -42,7 +60,11 @@ What do the following commands do:
 
 Explore these other [ls options](http://www.techonthenet.com/unix/basic/ls.php) and pick 5 of your favorites:
 
-> > REPLACE THIS TEXT WITH YOUR RESPONSE
+* `ls -c`: displays filename with time stamp
+* `ls -g`: displays long format without the owner name
+* `ls -R`: displays subdirectories as well
+* `ls -m`: displays names as a comma-seperated list
+* `ls -1`: displays each entry on a line
 
 ---
 
@@ -50,7 +72,7 @@ Explore these other [ls options](http://www.techonthenet.com/unix/basic/ls.php) 
 
 What does `xargs` do? Give an example of how to use it.
 
-> > REPLACE THIS TEXT WITH YOUR RESPONSE
+> > xargs will execute the same command on a number of different items. For instance, if I wanted to use the "cat" command to show all the contents of every .md file in the dsp folder, I can type "ls *.md | xargs cat" and it will list all those files and display their contents
 
  
 
