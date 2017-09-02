@@ -81,7 +81,7 @@ Upload these 3 files to the [`editors`](editors/) folder.
 
 What terminal editor will be your preferred choice of use? How did you make your decision?
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+I'm planning on using nano because I find that be the easiest to navigate in terms of command and interface
 
 --
 
@@ -89,6 +89,6 @@ What terminal editor will be your preferred choice of use? How did you make your
 
 What graphical editor will you use? How did you make your decision? What are some interesting features of your editor? What are some useful keyboard shortcuts for your editor? How do you customize your editor?
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+Most likely PyCharm due to my familiarity with it. I've used it in the past and think its ability to run files within the program is really cool. I also really like the debugging features that it has. It also has a lot of keyboard shortcuts I like--hitting shift twice searches everything in the directory, command d duplicates the current line or selection, and some others. I can customize a lot of different things, such as colors and fonts, keyboard shortcuts, and more--to be honest, I've never done much customization but would be eager to explore the various capabilities.
 
  
