@@ -9,6 +9,7 @@ def donuts(count):
     passed in. However, if the count is 10 or more, then use the word
     'many' instead of the actual count.
 
+
     >>> donuts(4)
     'Number of donuts: 4'
     >>> donuts(9)
@@ -18,7 +19,12 @@ def donuts(count):
     >>> donuts(99)
     'Number of donuts: many'
     """
-    raise NotImplementedError
+    if count > 9:
+        num = "many"
+    else:
+        num = str(count)
+    return "Number of donuts: " + num
+
 
 
 def both_ends(s):
@@ -37,7 +43,13 @@ def both_ends(s):
     >>> both_ends('xyz')
     'xyyz'
     """
-    raise NotImplementedError
+    if len(s) <2:
+        return ''
+    else:
+        part_1 = s[0:2]
+        part_2 = s[-2:]
+        return part_1 + part_2
+
 
 
 def fix_start(s):
@@ -56,7 +68,16 @@ def fix_start(s):
     >>> fix_start('donut')
     'donut'
     """
-    raise NotImplementedError
+    counter = 0
+    first_letter = s[0]
+    final_string = ""
+    while counter < len(s):
+        if counter != 0 and s[counter] == first_letter:
+            final_string += "*"
+        else:
+            final_string += s[counter]
+        counter += 1
+    return final_string
 
 
 def mix_up(a, b):
@@ -74,7 +95,11 @@ def mix_up(a, b):
     >>> mix_up('pezzy', 'firm')
     'fizzy perm'
     """
-    raise NotImplementedError
+    a_first_set = a[0:2]
+    b_first_set = b[0:2]
+    a_rest = a[2:]
+    b_rest = b[2:]
+    return b_first_set + a_rest + " " + a_first_set + b_rest
 
 
 def verbing(s):
@@ -91,7 +116,12 @@ def verbing(s):
     >>> verbing('do')
     'do'
     """
-    raise NotImplementedError
+    if len(s)<3:
+        return s
+    elif s[-3:] == "ing":
+        return s + "ly"
+    else:
+        return s + "ing"
 
 
 def not_bad(s):
@@ -111,7 +141,22 @@ def not_bad(s):
     >>> not_bad("It's bad yet not")
     "It's bad yet not"
     """
-    raise NotImplementedError
+    bad_index = s.find("bad")
+    not_index = s.find("not")
+
+    if s[-1] == "!":
+        punctuation = "!"
+    else:
+        punctuation = ""
+
+    if bad_index == -1 or not_index == -1:
+        return s
+
+    if not_index > bad_index:
+        return s
+
+    new_string = s[:not_index]
+    return new_string + "good" + punctuation
 
 
 def front_back(a, b):
@@ -130,4 +175,22 @@ def front_back(a, b):
     >>> front_back('Kitten', 'Donut')
     'KitDontenut'
     """
-    raise NotImplementedError
+    if len(a) % 2 == 1:
+        a_split = len(a)/2 + 1
+    else:
+        a_split = len(a)/2
+
+    if len(b) % 2 == 1:
+        b_split = len(b)/2 + 1
+    else:
+        b_split = len(b)/2
+
+    a_front = a[:a_split]
+    a_back = a[a_split:]
+
+    b_front = b[:b_split]
+    b_back = b[b_split:]
+
+    return a_front + b_front + a_back + b_back
+
+
