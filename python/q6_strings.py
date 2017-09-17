@@ -143,6 +143,7 @@ def not_bad(s):
     """
     bad_index = s.find("bad")
     not_index = s.find("not")
+    punctuation = ""
 
     if s[-1] == "!":
         punctuation = "!"

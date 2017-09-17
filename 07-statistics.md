@@ -69,16 +69,71 @@ Cohen's D is an example of effect size.  Other examples of effect size are:  cor
 
 You will see effect size again and again in results of algorithms that are run in data science.  For instance, in the bootcamp, when you run a regression analysis, you will recognize the t-statistic as an example of effect size.
 
+This gave a Cohen's D of -.08, which indicates to me that there is not a sizable difference in the standard variation in the two groups. Code is below.
+
+def cohens_d_birthorder():
+    data = nsfg.ReadFemPreg()
+
+    first_borns = data[data.birthord == 1]
+    non_firsts = data[data.birthord != 1]
+
+    first_born_avg_weight = first_borns.totalwgt_lb.mean()
+    non_firsts_avg_weight = non_firsts.totalwgt_lb.mean()
+    diff = first_born_avg_weight - non_firsts_avg_weight
+
+    first_borns_var = first_borns.totalwgt_lb.var()
+    non_firsts_var = non_firsts.totalwgt_lb.var()
+
+    first_borns_count = len(first_borns)
+    non_firsts_count = len(non_firsts)
+
+    total_var = (first_borns_count * first_borns_var + non_firsts_count * non_firsts_var)/(first_borns_count + non_firsts_count)
+
+    final = diff/math.sqrt(total_var)
+    return final
+
 ### Q2. [Think Stats Chapter 3 Exercise 1](statistics/3-1-actual_biased.md) (actual vs. biased)
 This problem presents a robust example of actual vs biased data.  As a data scientist, it will be important to examine not only the data that is available, but also the data that may be missing but highly relevant.  You will see how the absence of this relevant data will bias a dataset, its distribution, and ultimately, its statistical interpretation.
 
-### Q3. [Think Stats Chapter 4 Exercise 2](statistics/4-2-random_dist.md) (random distribution)  
+The biased mean is 2.404, while the actual mean is 1.024. Code is below.
+
+
+resp = nsfg.ReadFemResp()
+pmf = thinkstats2.Pmf(resp.numkdhh, label='numkdhh')
+thinkplot.Pmf(pmf)
+thinkplot.Config(xlabel='Number of children', ylabel='PMF')
+biased = BiasPmf(pmf, label='biased')
+biased.Mean()
+biased = BiasPmf(pmf, label='biased')
+thinkplot.PrePlot(2)
+thinkplot.Pmfs([pmf, biased])
+thinkplot.Config(xlabel='Number of children', ylabel='PMF')
+pmf.Mean()
+
+### Q3. [Think Stats Chapter 4 Exercise 2](statistics/4-2-random_dist.md) (random distribution)
 This questions asks you to examine the function that produces random numbers.  Is it really random?  A good way to test that is to examine the pmf and cdf of the list of random numbers and visualize the distribution.  If you're not sure what pmf is, read more about it in Chapter 3.  
+
+The distribution seems to be uniform for the CDF and not for the PMF.
+
+random_nums = np.random.random(1000)
+pmf = thinkstats2.Pmf(random_nums)
+thinkplot.Pmf(pmf, linewidth=0.1)
+thinkplot.Config(xlabel='Random var
+cdf = thinkstats2.Cdf(random_nums)
+thinkplot.Cdf(cdf)
+thinkplot.Config(xlabel='Random variate', ylabel='PMF')
 
 ### Q4. [Think Stats Chapter 5 Exercise 1](statistics/5-1-blue_men.md) (normal distribution of blue men)
 This is a classic example of hypothesis testing using the normal distribution.  The effect size used here is the Z-statistic. 
 
-
+import scipy.stats
+mu = 178
+sigma = 7.7
+dist = scipy.stats.norm(loc=mu, scale=sigma)
+dist.cdf(mu-sigma)
+low = dist.cdf(177.8)
+high = dist.cdf(185.4)
+print(low, high, high-low, dist)
 
 ### Q5. Bayesian (Elvis Presley twin) 
 
@@ -88,12 +143,21 @@ Elvis Presley had a twin brother who died at birth.  What is the probability tha
 
 >> REPLACE THIS TEXT WITH YOUR RESPONSE
 
+A = Twin brothers being born
+B = Identical Twins
+C = Fraternal Twins
+
+P (B|A) = (P(A|B) * P(B))/(P(A|B) * P(B) + P(A|C) * P(C))
+        = (1/2 *1/300)/(1/2 *1/300 + 1/4 * 1/125)
+        = 5/11
+
 ---
 
 ### Q6. Bayesian &amp; Frequentist Comparison  
 How do frequentist and Bayesian statistics compare?
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+>> Bayesian statistics relies on the probability for the hypothesis and data, whereas the frequentist approach does not.
+Because of this, it is necessary to know the prior results for a Bayseian approach, but not for a freqentist one, which might rely more on running trials
 
 ---
 
